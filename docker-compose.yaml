@@ -1,16 +1,12 @@
-
-## 
-# Run the following command to create an image and
-# initialize a project in this directory
-#
-#   docker compose -f docker-compose-initialization.yaml up --build
-#
-##
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        # Comment out the next line to prevent installing nodemon.
+        NODE_ENV: development
     volumes:
-      - .:/app/  # This will be created on the host machine if it doesn't exist.
+      - ./src:/app/src
       - /app/node_modules
     stdin_open: true
     tty: true
@@ -18,6 +14,4 @@ services:
       - "80:80"
     image: node-utility-container
     # Using a heredoc to create a multi-line command.
-    # "start": "node src/app.js",
-    # "dev": "node node_modules/nodemon/bin/nodemon.js src/app.js"
     command: npm run dev
