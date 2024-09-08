@@ -6,7 +6,7 @@ services:
         # Comment out the next line to prevent installing nodemon.
         NODE_ENV: development
     volumes:
-      - ./src:/app/src
+      - .:/app
       - /app/node_modules
     stdin_open: true
     tty: true
